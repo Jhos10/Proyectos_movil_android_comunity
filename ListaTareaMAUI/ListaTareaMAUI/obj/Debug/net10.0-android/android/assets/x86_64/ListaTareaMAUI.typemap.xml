@@ -1,0 +1,10 @@
+<api type="debug" assembly-name="ListaTareaMAUI" mvid="1d953220ceec4e3faab1f99e44c9c587">
+  <java-to-managed>
+    <entry java-name="crc64865e38bd9b830194/MainActivity" managed-name="ListaTareaMAUI.MainActivity, ListaTareaMAUI" managed-type-token-id="33554444" />
+    <entry java-name="crc64865e38bd9b830194/MainApplication" managed-name="ListaTareaMAUI.MainApplication, ListaTareaMAUI" managed-type-token-id="33554445" />
+  </java-to-managed>
+  <managed-to-java>
+    <entry java-name="crc64865e38bd9b830194/MainActivity" managed-name="ListaTareaMAUI.MainActivity, ListaTareaMAUI" managed-type-token-id="33554444" />
+    <entry java-name="crc64865e38bd9b830194/MainApplication" managed-name="ListaTareaMAUI.MainApplication, ListaTareaMAUI" managed-type-token-id="33554445" />
+  </managed-to-java>
+</api>

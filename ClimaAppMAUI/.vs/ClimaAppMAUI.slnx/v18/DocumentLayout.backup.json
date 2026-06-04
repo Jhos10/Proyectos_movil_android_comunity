@@ -1,0 +1,69 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jhost\\source\\repos\\ClimaAppMAUI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6F3CB599-CE4E-F406-DB4F-93C472FD4E38}|ClimaAppMAUI\\ClimaAppMAUI.csproj|c:\\users\\jhost\\source\\repos\\climaappmaui\\climaappmaui\\weatherdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F3CB599-CE4E-F406-DB4F-93C472FD4E38}|ClimaAppMAUI\\ClimaAppMAUI.csproj|solutionrelative:climaappmaui\\weatherdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F3CB599-CE4E-F406-DB4F-93C472FD4E38}|ClimaAppMAUI\\ClimaAppMAUI.csproj|c:\\users\\jhost\\source\\repos\\climaappmaui\\climaappmaui\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6F3CB599-CE4E-F406-DB4F-93C472FD4E38}|ClimaAppMAUI\\ClimaAppMAUI.csproj|solutionrelative:climaappmaui\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6F3CB599-CE4E-F406-DB4F-93C472FD4E38}|ClimaAppMAUI\\ClimaAppMAUI.csproj|c:\\users\\jhost\\source\\repos\\climaappmaui\\climaappmaui\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{6F3CB599-CE4E-F406-DB4F-93C472FD4E38}|ClimaAppMAUI\\ClimaAppMAUI.csproj|solutionrelative:climaappmaui\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jhost\\source\\repos\\ClimaAppMAUI\\ClimaAppMAUI\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "ClimaAppMAUI\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\jhost\\source\\repos\\ClimaAppMAUI\\ClimaAppMAUI\\MainPage.xaml.cs",
+              "RelativeToolTip": "ClimaAppMAUI\\MainPage.xaml.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-24T14:19:52.725Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\jhost\\source\\repos\\ClimaAppMAUI\\ClimaAppMAUI\\MainPage.xaml",
+              "RelativeDocumentMoniker": "ClimaAppMAUI\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\jhost\\source\\repos\\ClimaAppMAUI\\ClimaAppMAUI\\MainPage.xaml",
+              "RelativeToolTip": "ClimaAppMAUI\\MainPage.xaml",
+              "ViewState": "AgIAADIAAAAAAAAAAABBwDMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-24T14:19:43.303Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WeatherData.cs",
+              "DocumentMoniker": "C:\\Users\\jhost\\source\\repos\\ClimaAppMAUI\\ClimaAppMAUI\\WeatherData.cs",
+              "RelativeDocumentMoniker": "ClimaAppMAUI\\WeatherData.cs",
+              "ToolTip": "C:\\Users\\jhost\\source\\repos\\ClimaAppMAUI\\ClimaAppMAUI\\WeatherData.cs",
+              "RelativeToolTip": "ClimaAppMAUI\\WeatherData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-24T14:19:32.236Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

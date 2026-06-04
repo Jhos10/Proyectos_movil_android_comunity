@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MiniCalculadora.MainPage">
+
+    <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+          ColumnDefinitions="*"
+          RowSpacing="15"
+          Padding="20">
+
+        <Label Grid.Row="0"
+               Text="CALCULADORA"
+               FontSize="24"
+               FontAttributes="Bold"
+               HorizontalOptions="Center"/>
+
+        <Entry x:Name="numero1Entry"
+               Grid.Row="1"
+               Placeholder="Número 1"
+               Keyboard="Numeric"/>
+
+        <Entry x:Name="numero2Entry"
+               Grid.Row="2"
+               Placeholder="Número 2"
+               Keyboard="Numeric"/>
+
+        <Picker x:Name="operacionPicker"
+                Grid.Row="3"
+                Title="Selecciona operación">
+            <Picker.Items>
+                <x:String>Sumar (+)</x:String>
+                <x:String>Restar (-)</x:String>
+                <x:String>Multiplicar (×)</x:String>
+                <x:String>Dividir (÷)</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Button x:Name="calcularButton"
+                Grid.Row="4"
+                Text="CALCULAR"
+                Clicked="OnCalcularClicked"
+                BackgroundColor="Blue"
+                TextColor="White"/>
+
+        <Label x:Name="resultadoLabel"
+               Grid.Row="5"
+               FontSize="22"
+               HorizontalOptions="Center"
+               Margin="0,20"/>
+    </Grid>
+
+</ContentPage>

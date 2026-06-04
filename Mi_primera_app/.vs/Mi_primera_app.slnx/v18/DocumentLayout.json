@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jhost\\source\\repos\\Mi_primera_app\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FF3ED3E5-E59F-A7DB-F753-425FFC129552}|Mi_primera_app\\Mi_primera_app.csproj|c:\\users\\jhost\\source\\repos\\mi_primera_app\\mi_primera_app\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{FF3ED3E5-E59F-A7DB-F753-425FFC129552}|Mi_primera_app\\Mi_primera_app.csproj|solutionrelative:mi_primera_app\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FF3ED3E5-E59F-A7DB-F753-425FFC129552}|Mi_primera_app\\Mi_primera_app.csproj|c:\\users\\jhost\\source\\repos\\mi_primera_app\\mi_primera_app\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{FF3ED3E5-E59F-A7DB-F753-425FFC129552}|Mi_primera_app\\Mi_primera_app.csproj|solutionrelative:mi_primera_app\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\jhost\\source\\repos\\Mi_primera_app\\Mi_primera_app\\MainPage.xaml.cs",
+              "RelativeDocumentMoniker": "Mi_primera_app\\MainPage.xaml.cs",
+              "ToolTip": "C:\\Users\\jhost\\source\\repos\\Mi_primera_app\\Mi_primera_app\\MainPage.xaml.cs",
+              "RelativeToolTip": "Mi_primera_app\\MainPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-22T11:36:15.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainPage.xaml",
+              "DocumentMoniker": "C:\\Users\\jhost\\source\\repos\\Mi_primera_app\\Mi_primera_app\\MainPage.xaml",
+              "RelativeDocumentMoniker": "Mi_primera_app\\MainPage.xaml",
+              "ToolTip": "C:\\Users\\jhost\\source\\repos\\Mi_primera_app\\Mi_primera_app\\MainPage.xaml",
+              "RelativeToolTip": "Mi_primera_app\\MainPage.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-05-22T11:36:06.667Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

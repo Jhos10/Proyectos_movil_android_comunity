@@ -1,0 +1,20 @@
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Maui.Controls;
+
+namespace AgendaMAUI
+{
+    public partial class App : Application
+    {
+        public App()
+        {
+            InitializeComponent();
+            // Registrar ruta para ContactFormPage para navegación basada en Shell
+            Routing.RegisterRoute(nameof(ContactFormPage), typeof(ContactFormPage));
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            return new Window(new AppShell());
+        }
+    }
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ListaTareaMAUI</name>
+    </assembly>
+    <members>
+        <member name="T:ListaTareaMAUI.ViewModels.MainViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:ListaTareaMAUI.ViewModels.MainViewModel.Tasks">
+            <inheritdoc cref="F:ListaTareaMAUI.ViewModels.MainViewModel.tasks"/>
+        </member>
+        <member name="P:ListaTareaMAUI.ViewModels.MainViewModel.NewTaskName">
+            <inheritdoc cref="F:ListaTareaMAUI.ViewModels.MainViewModel.newTaskName"/>
+        </member>
+        <member name="F:ListaTareaMAUI.ViewModels.MainViewModel.addTaskCommand">
+            <summary>The backing field for <see cref="P:ListaTareaMAUI.ViewModels.MainViewModel.AddTaskCommand"/>.</summary>
+        </member>
+        <member name="P:ListaTareaMAUI.ViewModels.MainViewModel.AddTaskCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand"/> instance wrapping <see cref="M:ListaTareaMAUI.ViewModels.MainViewModel.AddTask"/>.</summary>
+        </member>
+        <member name="F:ListaTareaMAUI.ViewModels.MainViewModel.deleteTaskCommand">
+            <summary>The backing field for <see cref="P:ListaTareaMAUI.ViewModels.MainViewModel.DeleteTaskCommand"/>.</summary>
+        </member>
+        <member name="P:ListaTareaMAUI.ViewModels.MainViewModel.DeleteTaskCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:ListaTareaMAUI.ViewModels.MainViewModel.DeleteTask(ListaTareaMAUI.Models.TaskItem)"/>.</summary>
+        </member>
+        <member name="T:ListaTareaMAUI.Resource">
+            <summary>
+            Android Resource Designer class.
+            Exposes the Android Resource designer assembly into the project Namespace.
+            </summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Tasks">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Tasks" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.NewTaskName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "NewTaskName" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Tasks">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Tasks" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.NewTaskName">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "NewTaskName" generated properties.</summary>
+        </member>
+    </members>
+</doc>

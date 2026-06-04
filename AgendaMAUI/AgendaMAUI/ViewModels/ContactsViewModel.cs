@@ -1,0 +1,161 @@
+using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using AgendaMAUI.Models;
+using AgendaMAUI.Services;
+using Microsoft.Maui.Controls;
+
+namespace AgendaMAUI.ViewModels
+{
+    public partial class ContactsViewModel : ObservableObject
+    {
+        private readonly DatabaseService _database;
+
+        [ObservableProperty]
+        private ObservableCollection<AgendaMAUI.Models.Contact> contacts = new();
+
+        [ObservableProperty]
+        private AgendaMAUI.Models.Contact? currentContact;
+
+        [ObservableProperty]
+        private string? searchText;
+
+        public ContactsViewModel(DatabaseService database)
+        {
+            _database = database;
+            // Cargar inicialmente (llamamos al método directamente)
+            _ = LoadContacts();
+        }
+
+        [RelayCommand]
+        private async Task LoadContacts()
+        {
+            var contactList = await _database.GetContactsAsync();
+            Contacts = new ObservableCollection<AgendaMAUI.Models.Contact>(contactList);
+        }
+
+        [RelayCommand]
+        private async Task Search()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+                await LoadContacts();
+            else
+            {
+                var results = await _database.SearchContactsAsync(SearchText!);
+                Contacts = new ObservableCollection<AgendaMAUI.Models.Contact>(results);
+            }
+        }
+
+        [RelayCommand]
+        private async Task DeleteContact(AgendaMAUI.Models.Contact contact)
+        {
+            bool confirm = await Shell.Current.DisplayAlert("Confirmar", $"¿Eliminar a {contact.Name}?", "Sí", "No");
+            if (confirm)
+            {
+                await _database.DeleteContactAsync(contact);
+                await LoadContacts();
+            }
+        }
+
+        [RelayCommand]
+        private async Task EditContact(AgendaMAUI.Models.Contact contact)
+        {
+            if (contact == null)
+                return;
+            // Editar nombre
+            string? nombre = await Shell.Current.DisplayPromptAsync("Editar", "Nombre:", initialValue: contact.Name);
+            // If user cancelled any prompt, abort without showing error
+            if (nombre == null)
+                return;
+
+            // Editar teléfono
+            string? telefono = await Shell.Current.DisplayPromptAsync("Editar", "Teléfono:", initialValue: contact.Phone);
+            if (telefono == null)
+                return;
+
+            // Editar email
+            string? email = await Shell.Current.DisplayPromptAsync("Editar", "Email:", initialValue: contact.Email);
+            if (email == null)
+                return;
+
+            // Validar campos: si están vacíos al aceptar, mostrar error
+            var missing = new System.Collections.Generic.List<string>();
+            if (string.IsNullOrWhiteSpace(nombre)) missing.Add("Nombre");
+            if (string.IsNullOrWhiteSpace(telefono)) missing.Add("Teléfono");
+            if (string.IsNullOrWhiteSpace(email)) missing.Add("Email");
+
+            if (missing.Count > 0)
+            {
+                string msg = "Los siguientes campos son obligatorios: " + string.Join(", ", missing);
+                await Shell.Current.DisplayAlert("Error", msg, "OK");
+                return;
+            }
+
+            bool changed = false;
+            if (nombre != contact.Name)
+            {
+                contact.Name = nombre;
+                changed = true;
+            }
+
+            if (telefono != contact.Phone)
+            {
+                contact.Phone = telefono;
+                changed = true;
+            }
+
+            if (email != contact.Email)
+            {
+                contact.Email = email;
+                changed = true;
+            }
+
+            if (changed)
+            {
+                await _database.SaveContactAsync(contact);
+                await LoadContacts();
+            }
+        }
+
+        [RelayCommand]
+        private async Task NewContact()
+        {
+            string? nombre = await Shell.Current.DisplayPromptAsync("Nuevo", "Ingresa el nombre del contacto:");
+            if (nombre == null)
+                return; // usuario canceló
+
+            string? telefono = await Shell.Current.DisplayPromptAsync("Nuevo", "Ingresa el teléfono:", initialValue: "300-000-0000");
+            if (telefono == null)
+                return; // usuario canceló
+
+            string? email = await Shell.Current.DisplayPromptAsync("Nuevo", "Ingresa el email:");
+            if (email == null)
+                return; // usuario canceló
+
+            var missing = new System.Collections.Generic.List<string>();
+            if (string.IsNullOrWhiteSpace(nombre)) missing.Add("Nombre");
+            if (string.IsNullOrWhiteSpace(telefono)) missing.Add("Teléfono");
+            if (string.IsNullOrWhiteSpace(email)) missing.Add("Email");
+
+            if (missing.Count > 0)
+            {
+                string msg = "Los siguientes campos son obligatorios: " + string.Join(", ", missing);
+                await Shell.Current.DisplayAlert("Error", msg, "OK");
+                return;
+            }
+
+            var contact = new AgendaMAUI.Models.Contact
+            {
+                Name = nombre!,
+                Phone = telefono!,
+                Email = email!,
+                CreatedAt = DateTime.Now
+            };
+
+            await _database.SaveContactAsync(contact);
+            await LoadContacts();
+        }
+    }
+}

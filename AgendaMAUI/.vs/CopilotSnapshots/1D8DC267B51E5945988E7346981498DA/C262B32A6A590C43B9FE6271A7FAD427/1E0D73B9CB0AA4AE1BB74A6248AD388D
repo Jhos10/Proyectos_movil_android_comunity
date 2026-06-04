@@ -1,0 +1,39 @@
+﻿using Microsoft.Maui.Controls;
+
+namespace AgendaMAUI.Pages;
+
+public partial class ContactFormPage : ContentPage
+{
+    public ContactFormPage()
+    {
+        InitializeComponent();
+        BindingContext ??= new AgendaMAUI.Models.Contact();
+    }
+
+    private async void OnSaveClicked(object sender, EventArgs e)
+    {
+        var contact = BindingContext as AgendaMAUI.Models.Contact;
+        if (contact == null)
+            return;
+
+        var missing = new System.Collections.Generic.List<string>();
+        if (string.IsNullOrWhiteSpace(contact.Name)) missing.Add("Nombre");
+        if (string.IsNullOrWhiteSpace(contact.Phone)) missing.Add("Teléfono");
+        if (string.IsNullOrWhiteSpace(contact.Email)) missing.Add("Email");
+
+        if (missing.Count > 0)
+        {
+            string msg = "Los siguientes campos son obligatorios: " + string.Join(", ", missing);
+            await Shell.Current.DisplayAlert("Error", msg, "OK");
+            return;
+        }
+
+        // No guardamos aquí; el ViewModel se encargará al volver
+        await Navigation.PopAsync(true);
+    }
+
+    private async void OnCancelClicked(object sender, EventArgs e)
+    {
+        await Navigation.PopAsync(true);
+    }
+}

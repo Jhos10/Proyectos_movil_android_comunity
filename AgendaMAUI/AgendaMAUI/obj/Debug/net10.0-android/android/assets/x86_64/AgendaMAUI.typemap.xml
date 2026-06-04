@@ -1,0 +1,10 @@
+<api type="debug" assembly-name="AgendaMAUI" mvid="5f34dedc34ec4233aeee315c9e13240b">
+  <java-to-managed>
+    <entry java-name="crc648e40da34b94f35b7/MainActivity" managed-name="AgendaMAUI.MainActivity, AgendaMAUI" managed-type-token-id="33554444" />
+    <entry java-name="crc648e40da34b94f35b7/MainApplication" managed-name="AgendaMAUI.MainApplication, AgendaMAUI" managed-type-token-id="33554445" />
+  </java-to-managed>
+  <managed-to-java>
+    <entry java-name="crc648e40da34b94f35b7/MainActivity" managed-name="AgendaMAUI.MainActivity, AgendaMAUI" managed-type-token-id="33554444" />
+    <entry java-name="crc648e40da34b94f35b7/MainApplication" managed-name="AgendaMAUI.MainApplication, AgendaMAUI" managed-type-token-id="33554445" />
+  </managed-to-java>
+</api>

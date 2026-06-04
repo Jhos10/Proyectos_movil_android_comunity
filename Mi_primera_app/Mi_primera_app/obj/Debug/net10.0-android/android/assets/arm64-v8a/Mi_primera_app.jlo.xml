@@ -1,0 +1,15 @@
+<api>
+  <jcw-types>
+    <type name="MainActivity" package="crc64f2b95b6f17c4d0a7" application_java_class="android.app.Application" mono_runtime_initialization="mono.MonoPackageManager.LoadApplication (context);" extends_type="crc6488302ad6e9e4df1a.MauiAppCompatActivity" partial_assembly_qualified_name="Mi_primera_app.MainActivity, Mi_primera_app">
+      <constructors>
+        <constructor name="MainActivity" method="n_.ctor:()V:" jni_signature="()V" managed_parameters="" retval="void" is_dynamically_registered="True" />
+        <constructor name="MainActivity" method="n_.ctor:(I)V:" jni_signature="(I)V" managed_parameters="System.Int32, System.Private.CoreLib" params="int p0" retval="void" is_dynamically_registered="True" super_call="p0" activate_call="p0" />
+      </constructors>
+    </type>
+    <type name="MainApplication" package="crc64f2b95b6f17c4d0a7" application_java_class="android.app.Application" mono_runtime_initialization="mono.MonoPackageManager.LoadApplication (context);" extends_type="crc6488302ad6e9e4df1a.MauiApplication" is_application="True" partial_assembly_qualified_name="Mi_primera_app.MainApplication, Mi_primera_app" application_constructor="MainApplication" />
+  </jcw-types>
+  <acw-types partial-assembly-name="Mi_primera_app" module-name="Mi_primera_app.dll">
+    <type assembly-qualified-name="Mi_primera_app.MainActivity, Mi_primera_app, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" compat-jni-name="mi_primera_app.MainActivity" java-key="crc64f2b95b6f17c4d0a7.MainActivity" managed-key="Mi_primera_app.MainActivity" partial-assembly-qualified-name="Mi_primera_app.MainActivity, Mi_primera_app" />
+    <type assembly-qualified-name="Mi_primera_app.MainApplication, Mi_primera_app, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" compat-jni-name="mi_primera_app.MainApplication" java-key="crc64f2b95b6f17c4d0a7.MainApplication" managed-key="Mi_primera_app.MainApplication" partial-assembly-qualified-name="Mi_primera_app.MainApplication, Mi_primera_app" />
+  </acw-types>
+</api>

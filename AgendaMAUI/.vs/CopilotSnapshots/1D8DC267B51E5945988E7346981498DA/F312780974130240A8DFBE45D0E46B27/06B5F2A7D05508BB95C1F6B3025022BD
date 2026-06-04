@@ -1,0 +1,123 @@
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using AgendaMAUI.Models;
+using AgendaMAUI.Services;
+using Microsoft.Maui.Controls;
+
+namespace AgendaMAUI.ViewModels
+{
+    public partial class ContactsViewModel : ObservableObject
+    {
+        private readonly DatabaseService _database;
+
+        [ObservableProperty]
+        private ObservableCollection<AgendaMAUI.Models.Contact> contacts = new();
+
+        [ObservableProperty]
+        private AgendaMAUI.Models.Contact? currentContact;
+
+        [ObservableProperty]
+        private string? searchText;
+
+        public ContactsViewModel(DatabaseService database)
+        {
+            _database = database;
+            // Cargar inicialmente (llamamos al método directamente)
+            _ = LoadContacts();
+        }
+
+        [RelayCommand]
+        private async Task LoadContacts()
+        {
+            var contactList = await _database.GetContactsAsync();
+            Contacts = new ObservableCollection<AgendaMAUI.Models.Contact>(contactList);
+        }
+
+        [RelayCommand]
+        private async Task Search()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+                await LoadContacts();
+            else
+            {
+                var results = await _database.SearchContactsAsync(SearchText!);
+                Contacts = new ObservableCollection<AgendaMAUI.Models.Contact>(results);
+            }
+        }
+
+        [RelayCommand]
+        private async Task DeleteContact(AgendaMAUI.Models.Contact contact)
+        {
+            bool confirm = await Shell.Current.DisplayAlert("Confirmar", $"¿Eliminar a {contact.Name}?", "Sí", "No");
+            if (confirm)
+            {
+                await _database.DeleteContactAsync(contact);
+                await LoadContacts();
+            }
+        }
+
+        [RelayCommand]
+        private async Task EditContact(AgendaMAUI.Models.Contact contact)
+        {
+            if (contact == null)
+                return;
+
+            // Editar nombre
+            string? nombre = await Shell.Current.DisplayPromptAsync("Editar", "Nombre:", initialValue: contact.Name);
+            // Editar teléfono
+            string? telefono = await Shell.Current.DisplayPromptAsync("Editar", "Teléfono:", initialValue: contact.Phone);
+            // Editar email
+            string? email = await Shell.Current.DisplayPromptAsync("Editar", "Email:", initialValue: contact.Email);
+
+            bool changed = false;
+            if (!string.IsNullOrWhiteSpace(nombre) && nombre != contact.Name)
+            {
+                contact.Name = nombre;
+                changed = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(telefono) && telefono != contact.Phone)
+            {
+                contact.Phone = telefono;
+                changed = true;
+            }
+
+            if (!string.IsNullOrWhiteSpace(email) && email != contact.Email)
+            {
+                contact.Email = email;
+                changed = true;
+            }
+
+            if (changed)
+            {
+                await _database.SaveContactAsync(contact);
+                await LoadContacts();
+            }
+        }
+
+        [RelayCommand]
+        private async Task NewContact()
+        {
+            string nombre = await Shell.Current.DisplayPromptAsync("Nuevo", "Ingresa el nombre del contacto:") ?? string.Empty;
+            if (string.IsNullOrWhiteSpace(nombre))
+                return;
+
+            string telefono = await Shell.Current.DisplayPromptAsync("Nuevo", "Ingresa el teléfono:", initialValue: "300-000-0000") ?? string.Empty;
+            string email = await Shell.Current.DisplayPromptAsync("Nuevo", "Ingresa el email:") ?? string.Empty;
+
+            var contact = new AgendaMAUI.Models.Contact
+            {
+                Name = nombre,
+                Phone = telefono,
+                Email = email,
+                CreatedAt = DateTime.Now
+            };
+
+            await _database.SaveContactAsync(contact);
+            await LoadContacts();
+        }
+    }
+}

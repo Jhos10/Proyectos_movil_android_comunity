@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_PostProcessingItem Include="AgendaMAUI.app/Contents\MacOS\">
+      <IsAppExtension>false</IsAppExtension>
+      <BCSymbolMapName>.bcsymbolmap</BCSymbolMapName>
+      <NoDSymUtil>true</NoDSymUtil>
+      <dSYMSourcePathExists>false</dSYMSourcePathExists>
+      <NoSymbolStrip>true</NoSymbolStrip>
+      <dSYMInfoPlistRelativePath>AgendaMAUI.app.dSYM\Contents\Info.plist</dSYMInfoPlistRelativePath>
+      <SymbolFile></SymbolFile>
+      <DSymName>AgendaMAUI.app.dSYM</DSymName>
+      <SourceProjectPath>C:\Users\jhost\source\repos\AgendaMAUI\AgendaMAUI</SourceProjectPath>
+      <IsXPCService></IsXPCService>
+    </_PostProcessingItem>
+  </ItemGroup>
+</Project>
