@@ -1,0 +1,22 @@
+﻿using AgendaMAUI.ViewModels;
+
+namespace AgendaMAUI
+{
+    public partial class MainPage : ContentPage
+    {
+        public MainPage(ContactsViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            if (BindingContext is AgendaMAUI.ViewModels.ContactsViewModel vm)
+            {
+                await vm.RefreshAsync();
+            }
+        }
+    }
+}

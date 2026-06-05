@@ -11,4 +11,6 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <!-- ContactFormPage handled via registered route to allow DI construction -->
+
 </Shell>

@@ -1,0 +1,25 @@
+﻿using AgendaMAUI.ViewModels;
+
+namespace AgendaMAUI.Views;
+
+public partial class ContactFormPage : ContentPage
+{
+    private readonly ContactFormViewModel _vm;
+
+    public ContactFormPage(ContactFormViewModel vm)
+    {
+        InitializeComponent();
+        BindingContext = vm;
+        _vm = vm;
+    }
+
+    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+        // Si la navegación incluye un id como query, cargar el contacto
+        if (Shell.Current?.CurrentState?.Location?.Query is string query)
+        {
+            // No fiable en todas las plataformas, mejor usar Shell navigation with parameters
+        }
+    }
+}

@@ -30,8 +30,15 @@ namespace AgendaMAUI
 
             builder.Services.AddTransient<AgendaMAUI.ViewModels.ContactsViewModel>();
             builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<AgendaMAUI.ViewModels.ContactFormViewModel>();
+            builder.Services.AddTransient<AgendaMAUI.Views.ContactFormPage>();
 
-            return builder.Build();
+            var app = builder.Build();
+
+            // Registrar ruta para que Shell instancie la página via DI
+            Routing.RegisterRoute("ContactFormPage", typeof(AgendaMAUI.Views.ContactFormPage));
+
+            return app;
         }
     }
 }

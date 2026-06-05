@@ -1,0 +1,33 @@
+﻿using AgendaMAUI.ViewModels;
+
+namespace AgendaMAUI
+{
+    public partial class MainPage : ContentPage
+    {
+        public MainPage(ContactsViewModel viewModel)
+        {
+            InitializeComponent();
+            BindingContext = viewModel;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            if (BindingContext is AgendaMAUI.ViewModels.ContactsViewModel vm)
+            {
+                await vm.RefreshAsync();
+            }
+        }
+
+        private void OnSearchBarTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (BindingContext is AgendaMAUI.ViewModels.ContactsViewModel vm)
+            {
+                if (string.IsNullOrWhiteSpace(e.NewTextValue))
+                {
+                    _ = vm.LoadContacts();
+                }
+            }
+        }
+    }
+}

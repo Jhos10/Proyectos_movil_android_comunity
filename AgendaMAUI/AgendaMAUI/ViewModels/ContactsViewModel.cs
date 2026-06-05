@@ -22,6 +22,15 @@ namespace AgendaMAUI.ViewModels
         [ObservableProperty]
         private string? searchText;
 
+        // Cuando el texto de búsqueda cambia y queda vacío, recargamos todos los contactos
+        partial void OnSearchTextChanged(string? value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                _ = LoadContacts();
+            }
+        }
+
         public ContactsViewModel(DatabaseService database)
         {
             _database = database;
@@ -30,22 +39,31 @@ namespace AgendaMAUI.ViewModels
         }
 
         [RelayCommand]
-        private async Task LoadContacts()
+        public async Task LoadContacts()
         {
             var contactList = await _database.GetContactsAsync();
             Contacts = new ObservableCollection<AgendaMAUI.Models.Contact>(contactList);
         }
 
-        [RelayCommand]
-        private async Task Search()
+        // Método público para recargar desde la vista cuando reaparece
+        public Task RefreshAsync()
         {
-            if (string.IsNullOrWhiteSpace(SearchText))
-                await LoadContacts();
-            else
+            return LoadContacts();
+        }
+
+        [RelayCommand]
+        private async Task Search(string? query = null)
+        {
+            // Prioriza el parámetro (viene del SearchBar), cae en SearchText si es null
+            var q = query ?? SearchText;
+            if (string.IsNullOrWhiteSpace(q))
             {
-                var results = await _database.SearchContactsAsync(SearchText!);
-                Contacts = new ObservableCollection<AgendaMAUI.Models.Contact>(results);
+                await LoadContacts();
+                return;
             }
+
+            var results = await _database.SearchContactsAsync(q);
+            Contacts = new ObservableCollection<AgendaMAUI.Models.Contact>(results);
         }
 
         [RelayCommand]
@@ -64,98 +82,30 @@ namespace AgendaMAUI.ViewModels
         {
             if (contact == null)
                 return;
-            // Editar nombre
-            string? nombre = await Shell.Current.DisplayPromptAsync("Editar", "Nombre:", initialValue: contact.Name);
-            // If user cancelled any prompt, abort without showing error
-            if (nombre == null)
-                return;
 
-            // Editar teléfono
-            string? telefono = await Shell.Current.DisplayPromptAsync("Editar", "Teléfono:", initialValue: contact.Phone);
-            if (telefono == null)
-                return;
-
-            // Editar email
-            string? email = await Shell.Current.DisplayPromptAsync("Editar", "Email:", initialValue: contact.Email);
-            if (email == null)
-                return;
-
-            // Validar campos: si están vacíos al aceptar, mostrar error
-            var missing = new System.Collections.Generic.List<string>();
-            if (string.IsNullOrWhiteSpace(nombre)) missing.Add("Nombre");
-            if (string.IsNullOrWhiteSpace(telefono)) missing.Add("Teléfono");
-            if (string.IsNullOrWhiteSpace(email)) missing.Add("Email");
-
-            if (missing.Count > 0)
+            try
             {
-                string msg = "Los siguientes campos son obligatorios: " + string.Join(", ", missing);
-                await Shell.Current.DisplayAlert("Error", msg, "OK");
-                return;
+                // Navegar a la página de formulario con el id del contacto
+                await Shell.Current.GoToAsync($"ContactFormPage?contactId={contact.Id}");
             }
-
-            bool changed = false;
-            if (nombre != contact.Name)
+            catch (System.Exception ex)
             {
-                contact.Name = nombre;
-                changed = true;
-            }
-
-            if (telefono != contact.Phone)
-            {
-                contact.Phone = telefono;
-                changed = true;
-            }
-
-            if (email != contact.Email)
-            {
-                contact.Email = email;
-                changed = true;
-            }
-
-            if (changed)
-            {
-                await _database.SaveContactAsync(contact);
-                await LoadContacts();
+                await Shell.Current.DisplayAlert("Error", $"No se pudo abrir el editor: {ex.Message}", "OK");
             }
         }
 
         [RelayCommand]
         private async Task NewContact()
         {
-            string? nombre = await Shell.Current.DisplayPromptAsync("Nuevo", "Ingresa el nombre del contacto:");
-            if (nombre == null)
-                return; // usuario canceló
-
-            string? telefono = await Shell.Current.DisplayPromptAsync("Nuevo", "Ingresa el teléfono:", initialValue: "300-000-0000");
-            if (telefono == null)
-                return; // usuario canceló
-
-            string? email = await Shell.Current.DisplayPromptAsync("Nuevo", "Ingresa el email:");
-            if (email == null)
-                return; // usuario canceló
-
-            var missing = new System.Collections.Generic.List<string>();
-            if (string.IsNullOrWhiteSpace(nombre)) missing.Add("Nombre");
-            if (string.IsNullOrWhiteSpace(telefono)) missing.Add("Teléfono");
-            if (string.IsNullOrWhiteSpace(email)) missing.Add("Email");
-
-            if (missing.Count > 0)
+            try
             {
-                string msg = "Los siguientes campos son obligatorios: " + string.Join(", ", missing);
-                await Shell.Current.DisplayAlert("Error", msg, "OK");
-                return;
+                // Navegar a la página de formulario para crear un nuevo contacto
+                await Shell.Current.GoToAsync("ContactFormPage");
             }
-
-            var contact = new AgendaMAUI.Models.Contact
+            catch (System.Exception ex)
             {
-                Name = nombre!,
-                Phone = telefono!,
-                Email = email!,
-                CreatedAt = DateTime.Now
-            };
-
-            await _database.SaveContactAsync(contact);
-            await LoadContacts();
+                await Shell.Current.DisplayAlert("Error", $"No se pudo abrir el formulario: {ex.Message}", "OK");
+            }
         }
     }
 }

@@ -1,0 +1,108 @@
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using AgendaMAUI.Models;
+using AgendaMAUI.Services;
+using Microsoft.Maui.Controls;
+
+namespace AgendaMAUI.ViewModels
+{
+    public partial class ContactsViewModel : ObservableObject
+    {
+        private readonly DatabaseService _database;
+
+        [ObservableProperty]
+        private ObservableCollection<AgendaMAUI.Models.Contact> contacts = new();
+
+        [ObservableProperty]
+        private AgendaMAUI.Models.Contact? currentContact;
+
+        [ObservableProperty]
+        private string? searchText;
+
+        // Cuando el texto de búsqueda cambia y queda vacío, recargamos todos los contactos
+        partial void OnSearchTextChanged(string? value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                _ = LoadContacts();
+            }
+        }
+
+        public ContactsViewModel(DatabaseService database)
+        {
+            _database = database;
+            // Cargar inicialmente (llamamos al método directamente)
+            _ = LoadContacts();
+        }
+
+        [RelayCommand]
+        public async Task LoadContacts()
+        {
+            var contactList = await _database.GetContactsAsync();
+            Contacts = new ObservableCollection<AgendaMAUI.Models.Contact>(contactList);
+        }
+
+        // Método público para recargar desde la vista cuando reaparece
+        public Task RefreshAsync()
+        {
+            return LoadContacts();
+        }
+
+        [RelayCommand]
+        private async Task Search()
+        {
+            if (string.IsNullOrWhiteSpace(SearchText))
+                await LoadContacts();
+            else
+            {
+                var results = await _database.SearchContactsAsync(SearchText!);
+                Contacts = new ObservableCollection<AgendaMAUI.Models.Contact>(results);
+            }
+        }
+
+        [RelayCommand]
+        private async Task DeleteContact(AgendaMAUI.Models.Contact contact)
+        {
+            bool confirm = await Shell.Current.DisplayAlert("Confirmar", $"¿Eliminar a {contact.Name}?", "Sí", "No");
+            if (confirm)
+            {
+                await _database.DeleteContactAsync(contact);
+                await LoadContacts();
+            }
+        }
+
+        [RelayCommand]
+        private async Task EditContact(AgendaMAUI.Models.Contact contact)
+        {
+            if (contact == null)
+                return;
+
+            try
+            {
+                // Navegar a la página de formulario con el id del contacto
+                await Shell.Current.GoToAsync($"ContactFormPage?contactId={contact.Id}");
+            }
+            catch (System.Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", $"No se pudo abrir el editor: {ex.Message}", "OK");
+            }
+        }
+
+        [RelayCommand]
+        private async Task NewContact()
+        {
+            try
+            {
+                // Navegar a la página de formulario para crear un nuevo contacto
+                await Shell.Current.GoToAsync("ContactFormPage");
+            }
+            catch (System.Exception ex)
+            {
+                await Shell.Current.DisplayAlert("Error", $"No se pudo abrir el formulario: {ex.Message}", "OK");
+            }
+        }
+    }
+}

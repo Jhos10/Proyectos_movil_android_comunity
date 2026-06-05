@@ -4,6 +4,35 @@
         <name>AgendaMAUI</name>
     </assembly>
     <members>
+        <member name="T:AgendaMAUI.ViewModels.ContactFormViewModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:AgendaMAUI.ViewModels.ContactFormViewModel.Name">
+            <inheritdoc cref="F:AgendaMAUI.ViewModels.ContactFormViewModel.name"/>
+        </member>
+        <member name="P:AgendaMAUI.ViewModels.ContactFormViewModel.Phone">
+            <inheritdoc cref="F:AgendaMAUI.ViewModels.ContactFormViewModel.phone"/>
+        </member>
+        <member name="P:AgendaMAUI.ViewModels.ContactFormViewModel.Email">
+            <inheritdoc cref="F:AgendaMAUI.ViewModels.ContactFormViewModel.email"/>
+        </member>
+        <member name="P:AgendaMAUI.ViewModels.ContactFormViewModel.ContactId">
+            <inheritdoc cref="F:AgendaMAUI.ViewModels.ContactFormViewModel.contactId"/>
+        </member>
+        <member name="F:AgendaMAUI.ViewModels.ContactFormViewModel.saveCommand">
+            <summary>The backing field for <see cref="P:AgendaMAUI.ViewModels.ContactFormViewModel.SaveCommand"/>.</summary>
+        </member>
+        <member name="P:AgendaMAUI.ViewModels.ContactFormViewModel.SaveCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:AgendaMAUI.ViewModels.ContactFormViewModel.Save"/>.</summary>
+        </member>
+        <member name="F:AgendaMAUI.ViewModels.ContactFormViewModel.cancelCommand">
+            <summary>The backing field for <see cref="P:AgendaMAUI.ViewModels.ContactFormViewModel.CancelCommand"/>.</summary>
+        </member>
+        <member name="P:AgendaMAUI.ViewModels.ContactFormViewModel.CancelCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:AgendaMAUI.ViewModels.ContactFormViewModel.Cancel"/>.</summary>
+        </member>
         <member name="T:AgendaMAUI.ViewModels.ContactsViewModel">
             <inheritdoc/>
             <inheritdoc/>
@@ -21,6 +50,11 @@
         <member name="P:AgendaMAUI.ViewModels.ContactsViewModel.SearchText">
             <inheritdoc cref="F:AgendaMAUI.ViewModels.ContactsViewModel.searchText"/>
         </member>
+        <member name="M:AgendaMAUI.ViewModels.ContactsViewModel.OnSearchTextChanged(System.String)">
+            <summary>Executes the logic for when <see cref="P:AgendaMAUI.ViewModels.ContactsViewModel.SearchText"/> just changed.</summary>
+            <param name="value">The new property value that was set.</param>
+            <remarks>This method is invoked right after the value of <see cref="P:AgendaMAUI.ViewModels.ContactsViewModel.SearchText"/> is changed.</remarks>
+        </member>
         <member name="F:AgendaMAUI.ViewModels.ContactsViewModel.loadContactsCommand">
             <summary>The backing field for <see cref="P:AgendaMAUI.ViewModels.ContactsViewModel.LoadContactsCommand"/>.</summary>
         </member>
@@ -31,7 +65,7 @@
             <summary>The backing field for <see cref="P:AgendaMAUI.ViewModels.ContactsViewModel.SearchCommand"/>.</summary>
         </member>
         <member name="P:AgendaMAUI.ViewModels.ContactsViewModel.SearchCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:AgendaMAUI.ViewModels.ContactsViewModel.Search"/>.</summary>
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:AgendaMAUI.ViewModels.ContactsViewModel.Search(System.String)"/>.</summary>
         </member>
         <member name="F:AgendaMAUI.ViewModels.ContactsViewModel.deleteContactCommand">
             <summary>The backing field for <see cref="P:AgendaMAUI.ViewModels.ContactsViewModel.DeleteContactCommand"/>.</summary>
@@ -63,6 +97,18 @@
             for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
             </summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Name">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Name" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Phone">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Phone" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Email">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Email" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.ContactId">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "ContactId" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Contacts">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Contacts" generated properties.</summary>
         </member>
@@ -77,6 +123,18 @@
             A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
             for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
             </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Name">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Name" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Phone">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Phone" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Email">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Email" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.ContactId">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "ContactId" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Contacts">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Contacts" generated properties.</summary>
