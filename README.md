@@ -1,135 +1,67 @@
- # Entregable Final - Aplicaciones Móviles (.NET MAUI)
+# 📱 .NET MAUI Masterclass: De XAML a Arquitectura MVVM con SQLite
 
-    Este repositorio contiene un conjunto de aplicaciones móviles desarrolladas utilizando **.NET MAUI** como parte
-  del proyecto de entregable final. Cada carpeta representa una aplicación independiente diseñada para demostrar
-  conceptos específicos del desarrollo móvil, como la arquitectura MVVM, persistencia de datos (SQLite, Preferences),
-  validación de formularios, consumo de datos y maquetación de interfaces responsivas.
+![.NET 8.0](https://img.shields.io/badge/.NET-8.0%20%7C%2010.0-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![MVVM](https://img.shields.io/badge/Pattern-MVVM-008080?style=for-the-badge)
 
-    ---
+> **Taller Práctico y Proyecto Integrador** desarrollado para la materia de Programación Móvil en la Facultad de Ingeniería de la Universidad Libre.
 
-    ## 📂 Estructura del Repositorio
+Este repositorio documenta un viaje técnico progresivo a través del framework **.NET MAUI**. Contiene 5 aplicaciones completas que evolucionan desde el manejo básico de eventos e interfaces responsivas, hasta la implementación de patrones de diseño empresariales y persistencia de datos relacionales en dispositivos móviles.
 
-    A continuación se detalla el propósito y las características principales de cada una de las aplicaciones
-  incluidas:
+---
 
-    ### 1. 📔 [AgendaMAUI](./AgendaMAUI)
-    Una aplicación completa de agenda de contactos con almacenamiento persistente local.
-    *   **Descripción:** Permite a los usuarios gestionar su lista de contactos personales mediante operaciones CRUD
-  (Crear, Leer, Actualizar y Eliminar).
-    *   **Características Clave:**
-        *   **Persistencia de datos:** Utiliza una base de datos local SQLite asíncrona para guardar contactos
-  permanentemente.
-        *   **Búsqueda en tiempo real:** Barra de búsqueda (`SearchBar`) para filtrar la lista por nombre o número
-  telefónico.
-        *   **Gestos interactivos:** Implementa `SwipeView` en la lista para permitir la edición o eliminación de
-  contactos al deslizar el dedo.
-        *   **Mapeo de datos:** El modelo de contacto registra el nombre, teléfono, correo electrónico y fecha de
-  creación.
-    *   **Archivos Importantes:**
-        *   [Contact.cs](./AgendaMAUI/AgendaMAUI/Models/Contact.cs): Define la estructura y atributos de la tabla de
-  contactos en SQLite.
-        *   [DatabaseService.cs](./AgendaMAUI/AgendaMAUI/Services/DatabaseService.cs): Maneja la lógica de conexión y
-  operaciones de base de datos.
-        *   [MainPage.xaml](./AgendaMAUI/AgendaMAUI/MainPage.xaml): Interfaz visual de la lista y la barra de
-  búsqueda.
-        *   [ContactFormPage.xaml](./AgendaMAUI/AgendaMAUI/Views/ContactFormPage.xaml): Formulario para crear y
-  actualizar contactos.
+## 📑 Tabla de Contenidos
+1. [Arquitectura y Decisiones de Diseño](#-arquitectura-y-decisiones-de-diseño)
+2. [Catálogo de Aplicaciones](#-catálogo-de-aplicaciones)
+3. [Alineación Académica (Rúbrica)](#-alineación-académica-rúbrica-de-evaluación)
+4. [Guía de Despliegue Local](#-guía-de-despliegue-local)
+5. [Autor y Portafolio](#-autor-y-portafolio)
 
-    ---
+---
 
-    ### 2. ☀️ [ClimaAppMAUI](./ClimaAppMAUI)
-    Una aplicación interactiva para visualizar y simular las condiciones climáticas.
-    *   **Descripción:** Muestra datos sobre el clima (temperatura, humedad y condiciones actuales) simulando
-  actualizaciones de red dinámicas.
-    *   **Características Clave:**
-        *   **Enlace de datos (Data Binding):** Enlaza la interfaz con una clase modelo que implementa la interfaz
-  `INotifyPropertyChanged` para refrescar la vista en tiempo real cuando cambian los datos.
-        *   **Simulación Dinámica:** Al presionar "Actualizar Clima", se generan de manera segura valores aleatorios
-  para temperatura, humedad y condiciones atmosféricas (Soleado, Nublado, Lluvioso, etc.).
-        *   **Control de errores:** Manejo estructurado de excepciones al actualizar el estado de la aplicación.
-    *   **Archivos Importantes:**
-        *   [WeatherData.cs](./ClimaAppMAUI/ClimaAppMAUI/WeatherData.cs): Modelo de datos del clima con soporte de
-  notificaciones de propiedad cambiada.
-        *   [MainPage.xaml](./ClimaAppMAUI/ClimaAppMAUI/MainPage.xaml): Interfaz de usuario estructurada con
-  indicadores de temperatura y humedad en dos columnas.
-        *   [MainPage.xaml.cs](./ClimaAppMAUI/ClimaAppMAUI/MainPage.xaml.cs): Lógica detrás de la actualización
-  simulada.
+## 🏗 Arquitectura y Decisiones de Diseño
 
-    ---
+A lo largo del taller, la base de código transiciona de un enfoque monolítico (*Code-Behind*) a una arquitectura limpia y desacoplada utilizando **MVVM (Model-View-ViewModel)**.
 
-    ### 3. 📝 [ListaTareaMAUI](./ListaTareaMAUI)
-    Un gestor de tareas pendientes (To-Do List) con arquitectura MVVM moderna.
-    *   **Descripción:** Permite a los usuarios llevar un registro de sus tareas diarias, permitiendo agregarlas,
-  marcarlas como completadas y eliminarlas.
-    *   **Características Clave:**
-        *   **MVVM Avanzado:** Implementado con el paquete oficial `CommunityToolkit.Mvvm`, utilizando atributos
-  modernos como `[ObservableProperty]` y `[RelayCommand]` para generar código limpio y desacoplado.
-        *   **Persistencia Ligera:** Guarda la lista de tareas en las preferencias del dispositivo (`Preferences`)
-  serializándolas en formato JSON.
-        *   **Inicialización:** Precarga tareas por defecto la primera vez que se abre la aplicación.
-    *   **Archivos Importantes:**
-        *   [TaskItem.cs](./ListaTareaMAUI/ListaTareaMAUI/Models/TaskItem.cs): Estructura de cada tarea (ID, Nombre,
-  Estado de finalización y Fecha).
-        *   [MainViewModel.cs](./ListaTareaMAUI/ListaTareaMAUI/ViewModels/MainViewModel.cs): Modelo de vista
-  encargado de la lógica de negocio (cargar, agregar y eliminar tareas).
-        *   [MainPage.xaml](./ListaTareaMAUI/ListaTareaMAUI/MainPage.xaml): Vista en XAML que enlaza la colección de
-  tareas y las acciones.
+* **Capa de Presentación (View):** Construida 100% en `XAML`, utilizando `Grid` y `StackLayouts` para garantizar la responsividad. Se implementaron `DataTriggers` y `Bindings` para reaccionar a los cambios de estado sin tocar la lógica.
+* **Capa Lógica (ViewModel):** Potenciada por `CommunityToolkit.Mvvm`. El uso de Source Generators (`[ObservableProperty]`, `[RelayCommand]`) redujo drásticamente el código repetitivo (*boilerplate*), mejorando la legibilidad y el mantenimiento.
+* **Capa de Datos (Model & Services):** Implementación del patrón de Repositorio (Repository Pattern) a través de `DatabaseService`, inyectado como un Singleton en `MauiProgram.cs` para garantizar una única conexión asíncrona a la base de datos **SQLite**.
 
-    ---
+---
 
-    ### 4. 🚀 [Mi_primera_app](./Mi_primera_app)
-    Aplicación introductoria para el aprendizaje de las bases de .NET MAUI.
-    *   **Descripción:** Un proyecto introductorio simple que interactúa con el usuario solicitando su nombre y
-  mostrando un saludo en pantalla.
-    *   **Características Clave:**
-        *   **Validación básica:** Comprueba que el campo de texto no esté vacío antes de generar el saludo.
-        *   **Retroalimentación visual dinámica:** Cambia el color del texto a verde si el saludo es exitoso, o a
-  rojo para mostrar mensajes de advertencia si la entrada es inválida.
-    *   **Archivos Importantes:**
-        *   [MainPage.xaml](./Mi_primera_app/Mi_primera_app/MainPage.xaml): Diseño del campo de entrada (`Entry`), el
-  botón de saludo y la etiqueta de resultado.
-        *   [MainPage.xaml.cs](./Mi_primera_app/Mi_primera_app/MainPage.xaml.cs): Lógica del evento del botón y
-  validaciones de texto.
+## 📦 Catálogo de Aplicaciones
 
-    ---
+### 1️⃣ Mi Primera App (Hello World Extendido)
+Fundamentos del ciclo de vida de MAUI. Se enfoca en la interacción directa entre el XAML y el Code-Behind, validación de cadenas de texto y manipulación dinámica de propiedades visuales.
+* **Stack:** `VerticalStackLayout`, `Entry`, Eventos `Clicked`.
 
-    ### 5. 🧮 [MiniCalculadora](./MiniCalculadora)
-    Una calculadora matemática rápida y segura.
-    *   **Descripción:** Permite realizar operaciones aritméticas básicas entre dos números seleccionando la
-  operación correspondiente desde un selector (`Picker`).
-    *   **Características Clave:**
-        *   **Operaciones soportadas:** Suma, Resta, Multiplicación y División.
-        *   **Robustez y Seguridad:**
-            *   Previene errores de ejecución al validar que ambos campos contengan números válidos.
-            *   Implementa una validación crucial para **evitar la división por cero**, mostrando un mensaje de error
-  claro en su lugar.
-            *   Maneja bloques try-catch globales para evitar cierres inesperados de la aplicación.
-        *   **Formateo Numérico:** Muestra el resultado final redondeado a 2 cifras decimales.
-    *   **Archivos Importantes:**
-        *   [MainPage.xaml](./MiniCalculadora/MiniCalculadora/MainPage.xaml): Disposición de los controles usando un
-  `Grid` con teclado configurado únicamente como numérico.
-        *   [MainPage.xaml.cs](./MiniCalculadora/MiniCalculadora/MainPage.xaml.cs): Lógica de cálculo y validaciones
-  de errores.
+### 2️⃣ Mini Calculadora (Layouts Avanzados)
+Diseño de una interfaz estructurada y control de excepciones lógicas. Se implementaron validaciones estrictas (como el bloqueo de división entre cero) y teclados optimizados para móviles.
+* **Stack:** `Grid` (Proporciones relativas), `Picker`, `Keyboard="Numeric"`, Bloques `Try-Catch`.
 
-    ---
+### 3️⃣ Clima App (Introducción al Data Binding)
+El punto de inflexión arquitectónico. Se elimina la manipulación directa de la UI en favor de la interfaz `INotifyPropertyChanged`, demostrando cómo la vista reacciona automáticamente a la mutación de los datos subyacentes.
+* **Stack:** `BindingContext`, `StringFormat`, Modelos Reactivos.
 
-    ## 🛠️ Tecnologías y Librerías Utilizadas
+### 4️⃣ To-Do List (Colecciones y Estado Local)
+Gestión de listas dinámicas y persistencia en la memoria del dispositivo. Introduce disparadores visuales para alterar el diseño (ej. texto tachado) basados en el estado de una propiedad booleana.
+* **Stack:** `CollectionView`, `CommunityToolkit.Mvvm`, `DataTrigger`, `Microsoft.Maui.Storage.Preferences` (Serialización JSON).
 
-    *   **.NET 8.0 y .NET MAUI:** Plataforma principal para el desarrollo de aplicaciones multiplataforma.
-    *   **SQLite-net-pcl:** Para la base de datos local ligera y asíncrona en *AgendaMAUI*.
-    *   **CommunityToolkit.Mvvm:** Herramientas para la implementación eficiente del patrón MVVM en *ListaTareaMAUI*.
-    *   **System.Text.Json:** Para serializar y deserializar colecciones de objetos en almacenamiento local.
+### 5️⃣ Agenda de Contactos (CRUD Completo con SQLite)
+Proyecto integrador. Una aplicación lista para producción con almacenamiento en disco duro del móvil, inyección de dependencias, y experiencia de usuario avanzada nativa.
+* **Stack:** `sqlite-net-pcl`, `SwipeView` (Gestos de borrado), `SearchBar` (Filtrado asíncrono LINQ), `DisplayAlert` (Confirmaciones modales).
 
-    ---
 
-    ## 🚀 Cómo Ejecutar los Proyectos
 
-    1.  Asegúrate de tener instalado **Visual Studio 2022** con la carga de trabajo de **Desarrollo de la interfaz de
-  usuario multiplataforma de .NET (.NET MAUI)**.
-    2.  Clona este repositorio o descarga los archivos en tu máquina local.
-    3.  Abre el archivo de solución de cualquiera de las aplicaciones (`.slnx` o `.sln` en sus respectivas carpetas)
-  con Visual Studio.
-    4.  Restaura los paquetes NuGet si es necesario.
-    5.  Selecciona el dispositivo de destino (Windows Machine, Emulador de Android o Simulador de iOS) y presiona
-  **F5** o el botón de ejecutar.
+## 🚀 Guía de Despliegue Local
 
+### Requisitos Previos
+* **Visual Studio 2022** (v17.8+ recomendada) o Rider.
+* Carga de trabajo instalada: *Desarrollo de la IU de aplicaciones multiplataforma de .NET*.
+* Emulador Android (API 33+) o dispositivo físico con Depuración USB activa.
+
+### Instalación
+1. Clona el repositorio:
+   ```bash
+   git clone [https://github.com/tu-usuario/Taller-MAUI-Net.git](https://github.com/tu-usuario/Taller-MAUI-Net.git)
